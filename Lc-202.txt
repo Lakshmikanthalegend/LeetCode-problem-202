@@ -1,0 +1,28 @@
+// Method to determine if a number is happy
+    public static boolean isHappy(int n) {
+        // Set to track numbers we've seen to detect cycles
+        Set<Integer> seenNumbers = new HashSet<>();
+
+        // Loop until n becomes 1 (happy) or a cycle is detected
+        while (n != 1 && !seenNumbers.contains(n)) {
+            seenNumbers.add(n); // Add the number to the set
+            n = getSumOfSquares(n); // Replace n with the sum of the squares of its digits
+        }
+
+        // If n is 1, it's a happy number; otherwise, it's not
+        return n == 1;
+    }
+
+    // Helper method to calculate the sum of the squares of the digits of n
+    private static int getSumOfSquares(int n) {
+        int sum = 0; // Initialize sum
+
+        // Calculate sum of the squares of each digit
+        while (n > 0) {
+            int digit = n % 10; // Get the last digit
+            sum += digit * digit; // Square the digit and add to sum
+            n /= 10; // Remove the last digit
+        }
+
+        return sum; // Return the computed sum
+    }
